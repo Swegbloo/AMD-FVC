@@ -1,0 +1,7 @@
+function out = A_star(m,d,a,l,k)
+if k==0
+    out = -(a/d)*(sinh(m(1,l)*d)/sqrt(m(1,l)))/(2*m(1,l)+sinh(2*m(1,l)));
+elseif k>0
+    out = -(a/d)*sin(m(k+1,l)*d)/(sqrt(m(k+1,l))*sqrt(2*m(k+1,l)+sin(2*m(k+1,l))));
+end
+end

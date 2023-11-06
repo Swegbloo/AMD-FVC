@@ -1,0 +1,3 @@
+function out = S(n,a,d)
+out = n*pi/2*besseli(1,n*pi*a/d)/besseli(n*pi*a/d);
+end

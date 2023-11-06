@@ -1,0 +1,7 @@
+function out = cc(n,m,a,d,k)
+if k == 0
+    out = (2*(-1)^(n)*sinh(m*d)/(m*d))/((1+((n*pi)/(m*d))^2)*sqrt(0.5*(1+sinh(2*m)/(2*m))));
+elseif k >= 1
+    out = (2*sin(m*d-n*pi)*m*d)/((m*d-n*pi)*(m*d+n*pi));
+end
+end

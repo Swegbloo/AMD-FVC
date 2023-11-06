@@ -1,0 +1,9 @@
+function out = e(k,n,j,a,d,m,l)
+out = 0;
+for i = 1:k+1
+    out = out + (cc(n,m(i,l),d,i-1)*cc(j,m(i,l),d,i-1)*R(i-1,a,m(i,l)))/(m(i,l)*R_prime(m(i,l),a,i-1));
+
+end
+out = out*s(j,a,d);
+disp(out);
+end
