@@ -1,4 +1,4 @@
-clear all;
+clear all;  
 clc;
 a=0.2;
 d=0.3;
@@ -10,7 +10,7 @@ alpha_vector = zeros(n+1,1);
 if l1>1
 m(1,:) = linspace(0,4,l1)/a; % index 1 implies 1st m_0
 end
-m(1,1) = 0.01;
+m(1,1) = 0.05;
 x = m(1,:)*a; % x to be plotted
 global v;
 fun = @dispe;
@@ -50,7 +50,7 @@ for l = 0:l1-1
     z(1,l+1) = z(1,l+1) + (6*a*d^2-a^3)/(48*d);
 end
 
- 
-%plot(x,real(z));
+ hold on;
+plot(x,real(z));
 plot(x,imag(z));
-hold on;
+

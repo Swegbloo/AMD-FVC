@@ -1,7 +1,9 @@
-function out = Z_fun(n,a)
+function out = Z_fun(n,~)
 if n == 0
-    out = 1;
+    out = (cosh(m*d) + m*sinh(m) - cosh(m) - dn*m*sinh(m*d))/(sqrt(N_const(m,k))*m^2);
+    disp(out);
 elseif n>0
-    out = dbesseli(1,n*pi*a/d);
+    out = (cos(m) + m*sin(m) - d*m*sin(m*d) - cos(m*d))/(sqrt(N_const(m,k))*m^2);
+    disp(out);
 end
 end
