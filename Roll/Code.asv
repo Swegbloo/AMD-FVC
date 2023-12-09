@@ -53,4 +53,5 @@ end
  hold on;
 plot(x,real(z));
 plot(x,imag(z));
+for i 
 
