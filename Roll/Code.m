@@ -3,7 +3,7 @@ clc;
 a=0.2;
 d=0.3;
 n = 4;
-l1=1;
+l1=100;
 z = zeros(1,l1);
 m = zeros(n+1,l1);
 alpha_vector = zeros(n+1,1);
@@ -46,7 +46,6 @@ for l = 0:l1-1
     end
     for i = 0:n
         z(1,l+1) = z(1,l+1) - A_fun(a,d,i,m(:,l+1),n,alpha_vector)*Z_star(m(i+1),i,d)*R_ratio(m(i+1),a,i);
-        return;
     end
     z(1,l+1) = z(1,l+1) + (6*a*d^2-a^3)/(48*d);
 end
@@ -54,10 +53,12 @@ end
 CC = zeros(n);
  hold on;
 plot(x,real(z));
-plot(x,imag(z));
-% for i = 0:n
-%     for j = 0:n
-%         CC(i+1,j+1)= cc_fun(i,m(j+1),d,j);
-%     end
-% end
+%plot(x,imag(z));
+% rr=zeros(n,n);
+%   for i = 0:n
+%        for j = 0:n
+%            rr(i+1,j+1)= e_fun_roll(n,i,j,a,d,m);
+%        end
+%   end
+%   disp(rr);
 

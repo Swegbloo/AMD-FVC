@@ -50,8 +50,15 @@ for l = 0:l1-1
     z(1,l+1) = z(1,l+1) + (6*a*d^2-a^3)/(48*d);
 end
 
+CC = zeros(n);
  hold on;
 plot(x,real(z));
 plot(x,imag(z));
-for i 
+rr=zeros(n,1);
+  for i = 0:n
+     % for j = 0:n
+          rr(i+1)= e_fun_roll(n,i,);
+    % end
+  end
+  disp(rr);
 
