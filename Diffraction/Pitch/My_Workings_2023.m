@@ -19,16 +19,16 @@ nFreqs = size(freqScale,2);
 
 aMass = zeros(nFreqs,2);    
 damping = zeros(nFreqs,2);
-difForces = zeros(nFreqs,4); 
+difTrq = zeros(nFreqs,4); 
 
 for ik = 1:nFreqs
 
     freq = freqScale(ik)/a;
 sigma = (freq)*tanh(freq*dpt);
 
-% difForce = Fn_diffractionForce(a, dpt, d, sigma);
-% difForces(ik,1) = real(difForce);
-% difForces(ik,2) = imag(difForce);
+difTrq = Fn_diffractionTorque(a, dpt, d, sigma);
+difTrq(ik,1) = real(difTrq);
+difTrq(ik,2) = imag(difTrq);
 
 mroots = dispersion_free_surface_vMikeM(sigma,nEqns,dpt);
 % [fz_cmplx_iso,dvec,cvec] = cylinderSolverHeave_vYeung(a,d,mroots);

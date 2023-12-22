@@ -1,4 +1,4 @@
-function [difForce] =  Fn_diffractionForce(radius, depth, clearance, sigma)
+function [difTrq] =  Fn_diffractionTorque(radius, depth, clearance, sigma)
 
 % clc;
 % clear all;
@@ -183,7 +183,7 @@ for ik = 1:nEqs
     sum = sum + (-1)^(ik-1)*xVector(ik,1)*jacobiSymbols(ik)*psiStarFuns(ik);
 end
 
-difForce = (sigma*depth/(pi*clearance*radius^2))*sum;
+difTrq = (sigma*depth/(pi*clearance*radius^2))*sum;
 % abs(difForce)
 % m0*radius
 return
