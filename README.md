@@ -1,4 +1,4 @@
-# AMD-FVC
-Added Mass &amp; Damping of a Floating Vertical Cylinder : For a complete response analysis the problem is broken in two simpler sub-parts, namely:
-(i) Radiation response
-(ii) Incident wave response
+# Seakeeping of a Vertical Floating Cylinder
+For a complete response analysis, the problem is broken in two simpler sub-parts, namely:
+(i) Radiation characteristics: Added Mass and Damping variation with frquency
+(ii) Incident wave response: Diffraction force variation with frequency

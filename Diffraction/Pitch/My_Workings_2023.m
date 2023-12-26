@@ -33,7 +33,7 @@ difTrq(ik,2) = imag(difTrq);
 mroots = dispersion_free_surface_vMikeM(sigma,nEqns,dpt);
 % [fz_cmplx_iso,dvec,cvec] = cylinderSolverHeave_vYeung(a,d,mroots);
 
-pitchMoment = solcyl_pitch(a,dpt,d,mroots);
+%pitchMoment = solcyl_pitch(a,dpt,d,mroots);
 
 % fz_cmplx_iso = fz_cmplx_iso *a^3/(a^2*d);
 
@@ -41,10 +41,10 @@ omega = sqrt(sigma*g);
 
 % aMass(ik,1) = real(fz_cmplx_iso);
 % damping(ik,1) = imag(fz_cmplx_iso);
-return;
-
-aMass(ik,2) = real(pitchMoment);
-damping(ik,2) = imag(pitchMoment);
+% return;
+% 
+% aMass(ik,2) = real(pitchMoment);
+% damping(ik,2) = imag(pitchMoment);
 
 fprintf('%s\n',['computed for frequency ', num2str(freqScale(ik)),'..']);
 
@@ -54,7 +54,7 @@ fprintf('%s\n',['computed for frequency ', num2str(freqScale(ik)),'..']);
 end
 
 figure(1)
-plot(freqScale, aMass(:,2))
+plot(freqScale, difTrq(:,1))
 
 figure(2)
-plot(freqScale, damping(:,2))
+plot(freqScale, difTrq(:,2))
