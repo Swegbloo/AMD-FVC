@@ -12,7 +12,7 @@ nEqns = 4;
 % define
 
 freqScale = 0.01:0.01:3;
-freqScale = 0.01;
+%freqScale = 0.01;
 nFreqs = size(freqScale,2);
 
 % first column for heave, second for pitch.
