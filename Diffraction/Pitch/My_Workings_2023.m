@@ -26,9 +26,9 @@ for ik = 1:nFreqs
     freq = freqScale(ik)/a;
 sigma = (freq)*tanh(freq*dpt);
 
-difTrq = Fn_diffractionTorque(a, dpt, d, sigma);
-difTrq(ik,1) = real(difTrq);
-difTrq(ik,2) = imag(difTrq);
+[difTrq(ik,1),difTrq(ik,2)] = Fn_diffractionTorque(a, dpt, d, sigma);
+% difTrq(ik,1) = real(difTrq);
+% difTrq(ik,2) = imag(difTrq);
 difTrq(ik,3) = sqrt(difTrq(ik,1)^2+difTrq(ik,2)^2);
 
 mroots = dispersion_free_surface_vMikeM(sigma,nEqns,dpt);

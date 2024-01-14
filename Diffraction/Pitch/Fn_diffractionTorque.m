@@ -180,12 +180,15 @@ for ik = 1:nEqs
 end
 
 sum = 0;
+sum2 = 0;
  
 for ik = 1:nEqs
     sum = sum + (-1)^(ik-1)*xVector(ik,1)*jacobiSymbols(ik)*psiStarFuns(ik);
+    sum2 = sum2 + alpha(1,ik-1)*eps(ik-1)*(-1)^(ik)*phi_star(radius,ik-1,clearance); %add fun alpha, eps and consequences
 end
 
-difTrq = (sigma*depth/(pi*clearance*radius^2))*sum;
+difTrq(1) = (sigma*depth/(pi*clearance*radius^2))*sum;
+difTrq(2) = -1i*v/(pi*a^3*d)*sum2;
 % abs(difForce)
 % m0*radius
 return
