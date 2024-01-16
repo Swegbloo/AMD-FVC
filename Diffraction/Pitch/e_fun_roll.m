@@ -1,4 +1,4 @@
-function out = e_fun_roll(k,n,j,a,d,m,~)
+function out = e_fun_roll(p,k,n,j,a,d,m,~)
 out = 0;
 if n == 0
     eps = 1;
