@@ -6,6 +6,6 @@ elseif n > 0
     eps = 2;
 end
 for i = 0:k
-    out = out + (eps/d)*phi_prime(j,a,d)*R_ratio(m(i+1),a,i)*cc_fun(j,m(i+1),d,i)*cc_fun(n,m(i+1),d,i)/phi(j,a,d);
+    out = out + (eps/d)*phi_prime(p,j,a,d)*R_ratio(m(i+1),a,i)*cc_fun(j,m(i+1),d,i)*cc_fun(n,m(i+1),d,i)/phi(p,j,a,d);
 end
 end

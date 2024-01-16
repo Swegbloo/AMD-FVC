@@ -182,10 +182,10 @@ end
 sum = 0;
 sum2 = 0;
 alpha_v = zeros(p,n);
-alpha_v(:,1) = alpha(p,n,m,d,a);
+alpha_v(:,1) = alpha(1,n,m,d,a);
 for ik = 1:nEqs
     sum = sum + (-1)^(ik-1)*xVector(ik,1)*jacobiSymbols(ik)*psiStarFuns(ik);
-    sum2 = sum2 + alpha_v(a,)*eps(ik-1)*(-1)^(ik)*phi_star(radius,ik-1,clearance)); %add fun alpha, eps and consequences
+    sum2 = sum2 + alpha_v()*eps(ik-1)*(-1)^(ik)*phi_star(radius,ik-1,clearance)); %add fun alpha, eps and consequences
 end
 
 difTrq(1) = (sigma*depth/(pi*clearance*radius^2))*sum;
