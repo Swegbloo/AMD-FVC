@@ -1,8 +1,8 @@
-function out = phi(n,a,d)
+function out = phi(p,n,a,d)
 out = 0;
 if n == 0
-    out = a;
+    out = a^p;
 elseif n>0
-    out = besseli(1,n*pi*a/d);
+    out = besseli(p,n*pi*a/d);
 end
 end
