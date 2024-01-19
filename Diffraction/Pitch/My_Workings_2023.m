@@ -26,7 +26,7 @@ for ik = 1:nFreqs
     freq = freqScale(ik)/a;
 sigma = (freq)*tanh(freq*dpt);
 
-[difTrq(ik,1),difTrq(ik,2)] = Fn_diffractionTorque(a, dpt, d, sigma);
+difTrq(ik,1) = Fn_diffractionTorque(a, dpt, d, sigma);
 % difTrq(ik,1) = real(difTrq);
 % difTrq(ik,2) = imag(difTrq);
 %difTrq(ik,3) = sqrt(difTrq(ik,1)^2+difTrq(ik,2)^2);
@@ -53,9 +53,9 @@ fprintf('%s\n',['computed for frequency ', num2str(freqScale(ik)),'..']);
 
 
 end
-
+B = pi*a^2*1025*9.806*d;
 figure(1)
-plot(freqScale, difTrq(:,3))
+plot(freqScale, difTrq(:,1)/(B*a))
 
 % figure(2)
 % plot(freqScale, difTrq(:,2))

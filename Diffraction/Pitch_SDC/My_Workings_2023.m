@@ -31,7 +31,7 @@ sigma = (freq)*tanh(freq*dpt);
 % difForces(ik,2) = imag(difForce);
 % difForces(ik,3) = sqrt(difForces(ik,1)^2+difForces(ik,2)^2);
 
-difTrq = Fn_diffractionTorque(a, dpt, d, sigma);
+difTrq = Fn_diffractionForce(a, dpt, d, sigma);
 difTrq(ik,1) = real(difTrq);   %pitch
 difTrq(ik,2) = imag(difTrq);
 difTrq(ik,3) = difTrq(ik,1)+difTrq(ik,2);
