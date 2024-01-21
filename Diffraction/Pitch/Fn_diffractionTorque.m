@@ -25,9 +25,10 @@ xVector = zeros(nEqs, 1);
 
 mroots = dispersion_free_surface_vMikeM(sigma,nEqs,depth);
 nRoots = size(mroots,2);
-% disp(nRoots);
-% return;
+ % disp(mroots);
+ % return;
 m0 = -1i*mroots(1);
+mroots(1) = m0;
 
 
 
@@ -164,7 +165,7 @@ for ik = 1:nEqs
     
 end
 
-xVector = gmres(eye(nEqs)-eMatrix, gVector, nEqs,1.0e-06, nEqs);
+xVector = gmres(eye(nEqs)-eMatrix, gVector, nEqs,1.0e-10, nEqs);
         
 
 
@@ -183,9 +184,11 @@ sum = 0;
 %sum2 = 0;
 %alpha_v = zeros(p,n);
 %alpha_v(:,1) = alpha(1,n,m,d,a);
+%disp(xVector);
+%return;
 for ik = 1:nEqs
     %sum = sum + (-1)^(ik-1)*xVector(ik,1)*jacobiSymbols(ik)*psiStarFuns(ik);
-    sum = sum + A_fun()*R_ratio()*Z_star;
+    sum = sum + A_fun(1,radius,clearance,ik-1,mroots,nEqs-1,xVector)*R_ratio(mroots,radius,ik-1)*Z_star(mroots,ik-1,clearance);
     %sum2 = sum2 + alpha_v()*eps(ik-1)*(-1)^(ik)*phi_star(radius,ik-1,clearance)); %add fun alpha, eps and consequences
 end
 sum = 4*v/(pi*a^3*m0*0.5*(besselh(0,m0*radius)-besselh(2,m0*radius))) - 1i*v/a^2*sum;

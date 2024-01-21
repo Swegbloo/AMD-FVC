@@ -6,7 +6,7 @@ a = 0.2;
 dpt = 1.0;
 d = 0.3;
 
-nEqns = 4;
+nEqns = 5;
 
 
 % define
