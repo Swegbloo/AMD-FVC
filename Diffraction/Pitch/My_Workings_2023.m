@@ -49,7 +49,7 @@ omega = sqrt(sigma*g);
 
 fprintf('%s\n',['computed for frequency ', num2str(freqScale(ik)),'..']);
 
-difTrq = imag(difTrq);
+difTrq = real(difTrq);
 
 
 end
