@@ -25,7 +25,7 @@ for ik = 1:nFreqs
 
     freq = freqScale(ik)/a;
 sigma = (freq)*tanh(freq*dpt);
-
+% difForce = Fn_diffractionForce(a, dpt, d, sigma);
 difTrq(ik,1) = Fn_diffractionTorque(a, dpt, d, sigma);
 % difTrq(ik,1) = real(difTrq);
 % difTrq(ik,2) = imag(difTrq);
