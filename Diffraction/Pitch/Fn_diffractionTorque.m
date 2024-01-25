@@ -185,12 +185,12 @@ sum = 0;
 %alpha_v(:,1) = alpha(1,n,m,d,a);
 %disp(xVector);
 %return;
-for ik = 1:nEqs
+for ik = 0:nEqs
     %sum = sum + (-1)^(ik-1)*xVector(ik,1)*jacobiSymbols(ik)*psiStarFuns(ik);
-    sum = sum + A_fun(1,radius,clearance,ik-1,mroots,nEqs-1,xVector)*R_ratio(mroots(ik),radius,ik-1)*Z_star(mroots(ik),ik-1,clearance);
+    sum = sum + A_fun(1,radius,clearance,ik-1,mroots,1,nEqs-1,alpha)*R_ratio(mroots(ik),radius,ik-1)*Z_star(mroots(ik),ik-1,clearance);
     %sum2 = sum2 + alpha_v()*eps(ik-1)*(-1)^(ik)*phi_star(radius,ik-1,clearance)); %add fun alpha, eps and consequences
 end
-sum = 4*sigma/(pi*radius^3*m0*0.5*(besselh(0,m0*radius)-besselh(2,m0*radius))) - 1i*sigma/radius^2*sum;
+sum = 4*v/(pi*radius^3*m0*dbesselh(1,m0*radius))*Z_star(0) - 1i*v/radius^2*sum;
 
 difTrq = sum;
 end
