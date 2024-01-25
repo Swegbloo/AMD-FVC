@@ -1,4 +1,4 @@
-# Seakeeping of a Vertical Floating Cylinder
-For a complete response analysis, the problem is broken in two simpler sub-parts, namely:
-(i) Radiation characteristics: Added Mass and Damping variation with frequency
-(ii) Incident wave response: Diffraction force variation with frequency
+# Power Extracted by a Vertical Floating Cylinder<br/>
+The analysis is broken in two simpler sub-parts, namely:<br/>
+1)seakeeping response<br/>
+2)power Extraction for required degrees of freedom
