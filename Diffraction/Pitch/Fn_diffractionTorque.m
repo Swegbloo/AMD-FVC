@@ -11,7 +11,7 @@ function difTrq =  Fn_diffractionTorque(radius, depth, clearance, sigma)
 % 
 % sigma = (m0a/radius)*tanh(m0a/radius);
 
-
+v = sigma;
 
 nEqs = 5;
 
@@ -180,17 +180,18 @@ for ik = 1:nEqs
 end
 
 sum = 0;
+
 %sum2 = 0;
 %alpha_v = zeros(p,n);
 %alpha_v(:,1) = alpha(1,n,m,d,a);
 %disp(xVector);
 %return;
-for ik = 0:nEqs
+for ik = 1:nEqs
     %sum = sum + (-1)^(ik-1)*xVector(ik,1)*jacobiSymbols(ik)*psiStarFuns(ik);
-    sum = sum + A_fun(1,radius,clearance,ik-1,mroots,1,nEqs-1,alpha)*R_ratio(mroots(ik),radius,ik-1)*Z_star(mroots(ik),ik-1,clearance);
+    sum = sum + A_fun(radius,clearance,1,ik-1,mroots,nEqs-1,alpha(1,ik-1,m,clearance,radius))*R_ratio(mroots(ik),radius,ik-1)*Z_star(mroots(ik),ik-1,clearance);
     %sum2 = sum2 + alpha_v()*eps(ik-1)*(-1)^(ik)*phi_star(radius,ik-1,clearance)); %add fun alpha, eps and consequences
 end
-sum = 4*v/(pi*radius^3*m0*dbesselh(1,m0*radius))*Z_star(0) - 1i*v/radius^2*sum;
+sum = 4*v/(pi*radius^3*m0*dbesselh(1,m0*radius))*Z_star(m(ik),0,clearance) - 1i*v/radius^2*sum;
 
 difTrq = sum;
 end

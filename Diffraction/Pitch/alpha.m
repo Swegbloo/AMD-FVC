@@ -4,11 +4,10 @@ G = zeros(n+1,1);
 E = zeros(n+1);
 I = eye(n+1);
 
-if p == 1
     for x = 1:n+1
-        G(x,1) = g_fun_roll(p,n,x-1,m,d,a);
+        G(x,1) = alpha_star(p,n,x-1,m(0),d,a);
         for y = 1:n+1
-            E(x,y) = e_fun_roll(p,n,x-1,y-1,a,d,m);
+            E(x,y) = e_fun_roll(p,n,x-1,y-1,a,d,m(n));
         end
     end
     %disp(E)
