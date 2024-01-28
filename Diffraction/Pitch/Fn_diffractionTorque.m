@@ -31,9 +31,8 @@ m0 = -1i*mroots(1);
 mroots(1) = m0;
 
 
-
-alpha = zeros(nEqs,3);
-alpha(:,3) = mroots(2:end).';
+alpha_m = zeros(nEqs,3);
+alpha_m(:,3) = mroots(2:end).';
 
 
 onesExps = zeros(nEqs,1);
@@ -62,7 +61,7 @@ end
 z0_das = m0*sinh(m0)/sqrt(vEigNs(1));
 
 N0 = vEigNs(1);
-alpha(:,4) = vEigNs(2:end).';
+alpha_m(:,4) = vEigNs(2:end).';
 
 for ik = 1:nEqs
     onesExps(ik) = (-1)^(ik-1);
@@ -70,8 +69,8 @@ for ik = 1:nEqs
     
     mj = mroots(ik);
     
-    rj = COMPRY(ik,radius,m0,alpha,1,0);
-    rj_das = COMPRY(ik,radius,m0,alpha,2,0);
+    rj = COMPRY(ik,radius,m0,alpha_m,1,0);
+    rj_das = COMPRY(ik,radius,m0,alpha_m,2,0);
     if ik == 1
         rj_das = m0*rj_das;
         A0_star(ik) = -1.0*rj*1i*m0*dbesselj(0,m0*radius)*(1+0.5*sinh(2*m0)/m0)/(2*vEigNs(1)*rj_das*z0_das);
@@ -127,8 +126,8 @@ for ik = 1:nEqs
         for ij = 1:nEqs
             
             
-            rj = COMPRY(ij,radius,m0,alpha,1,0);
-            rj_das = COMPRY(ij,radius,m0,alpha,2,0);
+            rj = COMPRY(ij,radius,m0,alpha_m,1,0);
+            rj_das = COMPRY(ij,radius,m0,alpha_m,2,0);
   
             
             if ij == 1
@@ -136,8 +135,8 @@ for ik = 1:nEqs
             else
                 rj_das = mroots(ij)*rj_das;
             end
-            clj = (clearance/2)*COMPCY(clearance,ij,jk-1,m0,N0,alpha);
-            cnj = (clearance/2)*COMPCY(clearance,ij,ik-1,m0,N0,alpha);
+            clj = (clearance/2)*COMPCY(clearance,ij,jk-1,m0,N0,alpha_m);
+            cnj = (clearance/2)*COMPCY(clearance,ij,ik-1,m0,N0,alpha_m);
             sum = sum + (jacobiSymbols(jk)/clearance)*(rj/rj_das)*(psiFuns(jk,2)/psiFuns(jk,1))*cnj*clj;
         end
         
@@ -157,7 +156,7 @@ for ik = 1:nEqs
     sum = 0.0;
     
     for ij = 1:nEqs
-        cnj = (clearance/2)*COMPCY(clearance,ij,ik-1,m0,N0,alpha);
+        cnj = (clearance/2)*COMPCY(clearance,ij,ik-1,m0,N0,alpha_m);
         sum = sum + A0_star(ij)*cnj;
     end
     
@@ -186,12 +185,22 @@ sum = 0;
 %alpha_v(:,1) = alpha(1,n,m,d,a);
 %disp(xVector);
 %return;
-for ik = 1:nEqs
+
+% alp = alpha(1,4,mroots,clearance,radius);
+% disp(alp);
+%return;
+% alp = zeros(nEqs,1);
+% alp = alpha(1,nEqs,mroots,clearance,radius);
+
+for ik = 1:nEqs+1
+    
     %sum = sum + (-1)^(ik-1)*xVector(ik,1)*jacobiSymbols(ik)*psiStarFuns(ik);
-    sum = sum + A_fun(radius,clearance,1,ik-1,mroots,nEqs-1,alpha(1,ik-1,m,clearance,radius))*R_ratio(mroots(ik),radius,ik-1)*Z_star(mroots(ik),ik-1,clearance);
+    %disp(A_fun(0.2,0.3,1,ik-1,mroots,nEqs,alpha(1,ik-1,mroots,clearance,radius)));
+    sum = sum + A_fun(radius,clearance,1,ik-1,mroots,nEqs,alpha(1,nEqs,mroots,clearance,radius))*R_ratio(1,mroots(ik),radius,ik-1)*Z_star(mroots(ik),ik-1,clearance);
     %sum2 = sum2 + alpha_v()*eps(ik-1)*(-1)^(ik)*phi_star(radius,ik-1,clearance)); %add fun alpha, eps and consequences
 end
-sum = 4*v/(pi*radius^3*m0*dbesselh(1,m0*radius))*Z_star(m(ik),0,clearance) - 1i*v/radius^2*sum;
+
+sum = 4*v/(pi*radius^3*m0*dbesselh(1,m0*radius))*Z_star(mroots(ik),0,clearance) - 1i*v/radius^2*sum;
 
 difTrq = sum;
 end

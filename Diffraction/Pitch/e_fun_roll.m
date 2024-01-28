@@ -1,11 +1,11 @@
-function out = e_fun_roll(k,n,j,a,d,m,~)
+function out = e_fun_roll(p,j,n,l,a,d,m)
 out = 0;
-if n == 0
+if l == 0
     eps = 1;
-elseif n > 0
+elseif l > 0
     eps = 2;
 end
-for i = 0:k
-    out = out + (eps/d)*phi_prime(p,i,a,d)*R_ratio(m,a,i)*cc_fun(j,m,d,i)*cc_fun(n,m,d,k)/phi(i,a,d);
+for i = 0:j
+    out = out + (eps/d)*phi_prime(p,l,a,d)*R_ratio(p,m(i+1),a,i)*cc_fun(l,m(i+1),d,i)*cc_fun(n,m(i+1),d,i)/phi(p,l,a,d);
 end
 end
