@@ -1,4 +1,4 @@
-function out = psi(p,n,a,d)
+function out = phi(p,n,a,d)
 out = 0;
 if n == 0
     out = a^p;
