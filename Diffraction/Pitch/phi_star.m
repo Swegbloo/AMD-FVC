@@ -1,4 +1,4 @@
-function out = psi_star(a,n,d)
+function out = phi_star(a,n,d)
 out = 0;
 l = n*pi/d;
 if n == 0
