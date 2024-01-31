@@ -1,7 +1,7 @@
 function out = A_fun(a,d,p,j,m,n,alp)
 out = 0;
 
- disp(alp)
+ %disp(alp)
 % disp(n)
 % for i = 0:n
 %      out = out + alp(i+1)*phi_prime(p,i,a,d)*cc_fun(n,m(i+1),d,k)/phi(p,i,a,d);
