@@ -14,7 +14,7 @@ for i = 0:n
     else
         eps = 2;
     end
-    cc_fun(i,m(j+1),d,j)
+    %cc_fun(i,m(j+1),d,j)
     
     out = out + eps/(pi*d)*phi_prime(p,i,a,d)/phi(p,i,a,d)*cc_fun(i,m(j+1),d,j)*alp(i+1);
 end
