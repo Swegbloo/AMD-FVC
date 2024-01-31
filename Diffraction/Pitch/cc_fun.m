@@ -27,5 +27,6 @@ elseif k > 0
         out = out*N_const(m,k)^-0.5;
     end
 end
+out = out*d/2;
 %disp(out)
 end

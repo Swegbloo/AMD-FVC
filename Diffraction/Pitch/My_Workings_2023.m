@@ -17,8 +17,8 @@ nFreqs = size(freqScale,2);
 
 % first column for heave, second for pitch.
 
-aMass = zeros(nFreqs,2);    
-damping = zeros(nFreqs,2);
+% aMass = zeros(nFreqs,2);    
+% damping = zeros(nFreqs,2);
 difTrq = zeros(nFreqs,4); 
 
 for ik = 1:nFreqs
@@ -31,7 +31,7 @@ difTrq(ik,1) = Fn_diffractionTorque(a, dpt, d, sigma);
 % difTrq(ik,2) = imag(difTrq);
 %difTrq(ik,3) = sqrt(difTrq(ik,1)^2+difTrq(ik,2)^2);
 
-mroots = dispersion_free_surface_vMikeM(sigma,nEqns,dpt);
+% mroots = dispersion_free_surface_vMikeM(sigma,nEqns,dpt);
 % [fz_cmplx_iso,dvec,cvec] = cylinderSolverHeave_vYeung(a,d,mroots);
 
 %pitchMoment = solcyl_pitch(a,dpt,d,mroots);
@@ -53,9 +53,9 @@ fprintf('%s\n',['computed for frequency ', num2str(freqScale(ik)),'..']);
 
 
 end
-B = pi*a^2*1025*9.806*d;
+
 figure(1)
-plot(freqScale, difTrq(:,1)/(B*a))
+plot(freqScale, abs(difTrq(:,1)));
 
 % figure(2)
 % plot(freqScale, difTrq(:,2))
