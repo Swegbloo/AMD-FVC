@@ -1,4 +1,4 @@
-function out = phi_prime(p,n,a,d)
+function out = psi_prime(p,n,a,d)
 out = 0;
 if n == 0
     out = p*a^(p-1);
