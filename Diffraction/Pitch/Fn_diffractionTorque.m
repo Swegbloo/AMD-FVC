@@ -1,4 +1,4 @@
-function difTrq =  Fn_diffractionTorque(radius, depth, clearance, sigma)
+function [difTrq1,difTrq2] =  Fn_diffractionTorque(radius, depth, clearance, sigma)
 
 % clc;
 % clear all;
@@ -178,8 +178,8 @@ mroots(1) = m0;
 % 
 % end
 
-sum = 0;
-
+sum1 = 0;
+sum2 = 0;
 %sum2 = 0;
 %alpha_v = zeros(p,n);
 %alpha_v(:,1) = alpha(1,n,m,d,a);
@@ -194,16 +194,21 @@ sum = 0;
 alp = zeros(nEqs+1,1);
 alp(:,1) = alpha(1,nEqs,mroots,clearance,radius);
 for ik = 1:nEqs+1
-    
+    if (ik-1)==0
+        eps = 1;
+    else
+        eps = 2;
+    end
     %sum = sum + (-1)^(ik-1)*xVector(ik,1)*jacobiSymbols(ik)*psiStarFuns(ik);
     %disp(A_fun(0.2,0.3,1,ik-1,mroots,nEqs,alpha(1,ik-1,mroots,clearance,radius)));
-    sum = sum + A_fun(radius,clearance,1,ik-1,mroots,nEqs,alp)*...
+    sum1 = sum1 + A_fun(radius,clearance,1,ik-1,mroots,nEqs,alp)*...
     R_ratio(1,mroots(ik),radius,ik-1)*Z_star(mroots(ik),ik-1,clearance);
-    %sum2 = sum2 + alpha_v()*eps(ik-1)*(-1)^(ik)*phi_star(radius,ik-1,clearance)); %add fun alpha, eps and consequences
+    sum2 = sum2 + alp(ik)*eps*(-1)^(ik)*phi_star(radius,ik-1,clearance); %add fun alpha, eps and consequences
 end
-
-sum = 4*v/(pi*radius^3*dbesselh(1,m0*radius)*Z_prime(0,mroots(1),1))*Z_star(mroots(ik),0,clearance) - 1i*v/radius^2*sum;
-difTrq = sum;
+sum2 = 1i*v/(pi*radius^3*clearance)*sum2;
+sum1 = 4*v/(pi*radius^3*dbesselh(1,m0*radius)*Z_prime(0,mroots(1),1))*Z_star(mroots(ik),0,clearance) - 1i*v/radius^2*sum1;
+difTrq1 = sum1;
+difTrq2 = sum2;
 end
 % abs(difForce)
 % m0*radius

@@ -19,14 +19,15 @@ nFreqs = size(freqScale,2);
 
 % aMass = zeros(nFreqs,2);    
 % damping = zeros(nFreqs,2);
-difTrq = zeros(nFreqs,4); 
+difTrqside = zeros(nFreqs,4); 
+difTrqbot = zeros(nFreqs,4); 
 
 for ik = 1:nFreqs
 
     freq = freqScale(ik)/a;
 sigma = (freq)*tanh(freq*dpt);
 % difForce = Fn_diffractionForce(a, dpt, d, sigma);
-difTrq(ik,1) = Fn_diffractionTorque(a, dpt, d, sigma);
+[difTrqside(ik,1),difTrqbot(ik,1)] = Fn_diffractionTorque(a, dpt, d, sigma);
 % difTrq(ik,1) = real(difTrq);
 % difTrq(ik,2) = imag(difTrq);
 %difTrq(ik,3) = sqrt(difTrq(ik,1)^2+difTrq(ik,2)^2);
@@ -55,7 +56,7 @@ fprintf('%s\n',['computed for frequency ', num2str(freqScale(ik)),'..']);
 end
 
 figure(1)
-plot(freqScale, abs(difTrq(:,1)));
+plot(freqScale, abs(difTrqside(:,1)+difTrqbot(:,1)));
 
 % figure(2)
 % plot(freqScale, difTrq(:,2))
