@@ -202,7 +202,7 @@ for ik = 1:nEqs+1
     %sum2 = sum2 + alpha_v()*eps(ik-1)*(-1)^(ik)*phi_star(radius,ik-1,clearance)); %add fun alpha, eps and consequences
 end
 
-sum = 4*v/(pi*radius^3*m0*dbesselh(1,m0*radius)*Z_prime(0,mroots(1),1))*Z_star(mroots(ik),0,clearance) - 1i*v/radius^2*sum;
+sum = 4*v/(pi*radius^3*dbesselh(1,m0*radius)*Z_prime(0,mroots(1),1))*Z_star(mroots(ik),0,clearance) - 1i*v/radius^2*sum;
 difTrq = sum;
 end
 % abs(difForce)

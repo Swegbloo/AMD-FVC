@@ -17,5 +17,5 @@ out = 0;
 %     out = out/(n*pi)^2;
 %     disp(out);
 % end
-out = 4*1i^p*cc_fun(n,m,d,0)/(a*m*dbesselh(p,m*a)*Z_prime(0,m,1));
+out = 4*1i^p*cc_fun(n,m,d,0)/(a*dbesselh(p,m*a)*Z_prime(0,m,1));
 end
