@@ -207,7 +207,7 @@ for ik = 1:nEqs+1
 end
 sum2 = 1i*v/(pi*radius^3*clearance)*sum2;
 sum1 = 4*v/(pi*radius^3*dbesselh(1,m0*radius)*Z_prime(0,mroots(1),1))*Z_star(mroots(ik),0,clearance) - 1i*v/radius^2*sum1;
-difTrq1 = sum1;
+difTrq1 = abs(sum1);
 difTrq2 = sum2;
 end
 % abs(difForce)

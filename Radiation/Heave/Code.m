@@ -2,7 +2,7 @@
 % a = input('a =');
 % l1 = input('l =');
 % d = input('d =');
-s = BasicClass;
+%s = BasicClass;
 n=4;
 a=5;
 l1=100;
@@ -36,5 +36,5 @@ end
 %disp(A);
 [y1,y2] = y_out(l1,n,d,a,A,S);
 hold on;
-% plot(x,y1/a);
+plot(x,y1/a);
 plot(x,y2/a);
