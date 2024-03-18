@@ -4,15 +4,15 @@
 % d = input('d =');
 %s = BasicClass;
 n=4;
-a=5;
+a=0.2;
 l1=100;
-d=0.1;
+d=0.6;
 k = n; % so that the solution is unique
 m = zeros(k+1,l1);
 if l1>1
 m(1,:) = linspace(0,4,l1)/a; % index 1 implies 1st m_0
 end
-m(1,1) = 0.001;
+m(1,1) = 0.01;
 x = m(1,:)*a; % x to be plotted
 S = zeros(n+1,1);
 A = zeros(n+1,l1);
@@ -36,5 +36,5 @@ end
 %disp(A);
 [y1,y2] = y_out(l1,n,d,a,A,S);
 hold on;
-plot(x,y1/a);
-plot(x,y2/a);
+% plot(x,y1/a);
+% plot(x,y2/a);

@@ -1,0 +1,19 @@
+0
+3, 28, 28
+3
+8.77
+9.77
+10.77
+120, 6
+1
+180
+
+
+
+xg3
+rx, ry, rz
+no of periods
+periods
+characteristic length, draft
+no of wave headings
+wave headings in degree

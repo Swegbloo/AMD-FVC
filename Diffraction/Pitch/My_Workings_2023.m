@@ -56,7 +56,7 @@ fprintf('%s\n',['computed for frequency ', num2str(freqScale(ik)),'..']);
 end
 
 figure(1)
-plot(freqScale, abs(difTrqside(:,1)));
+plot(freqScale, abs(difTrqside(:,1)+difTrqbot(:,1)));
 
 % figure(2)
 % plot(freqScale, difTrq(:,2))
