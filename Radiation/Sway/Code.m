@@ -1,7 +1,8 @@
-clear all;
-clc;
-a=1;
-d=0.9;
+function [am,dp] = sway(a,d)
+% clear all;
+% clc;
+% a=1;
+% d=0.9;
 n = 10;
 l1=100;
 z = zeros(1,l1);
@@ -35,6 +36,8 @@ end
 z(1,l+1) = z(1,l+1)*(-1/(a*(1-d)));
 
 end
-plot(x,imag(z));
+am = real(z);
+dp = imag(z);
+%plot(x,imag(z));
 % plot(x,imag(z));
 hold on;
