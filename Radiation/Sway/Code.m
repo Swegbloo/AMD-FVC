@@ -1,10 +1,10 @@
-function [am,dp] = sway(a,d,n)
-% clear all;
-% clc;
-% a=1;
-% d=0.9;
-%n = 10;
-
+clear all;
+clc;
+a=1;
+d=0.9;
+n = 10;
+l1=100;
+z = zeros(1,l1);
 m = zeros(n+1,l1);
 alpha_vector = zeros(n+1,1);
 if l1>1
@@ -23,6 +23,7 @@ for ii = 0:l1-1
         m(j+2,ii+1) = fzero(fun,x_0);
     end
 end
+
   
 alpha_vector(:,1) = alpha(l,n,m(:,l+1),d,a);
 for ii = 0:n
@@ -31,10 +32,9 @@ z = z + AR_fun(a,d,ii,m(:,l+1),n,alpha_vector)*A_star(a,d,ii,m(ii+1,l+1)); % A a
 % ASV(i+1,1) = A_star(a,d,i,m(i+1,l+1));
 end
 
-z = z*(-1/(a*(1-d)));
+z(1,l+1) = z(1,l+1)*(-1/(a*(1-d)));
 
-% am = real(z);
-% dp = imag(z);
+
 %plot(x,imag(z));
 % plot(x,imag(z));
 %hold on;
