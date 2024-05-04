@@ -1,7 +1,0 @@
-        !COMPILER-GENERATED INTERFACE MODULE: Tue Mar 05 11:34:26 2024
-        MODULE INGEOM__genmod
-          INTERFACE 
-            SUBROUTINE INGEOM
-            END SUBROUTINE INGEOM
-          END INTERFACE 
-        END MODULE INGEOM__genmod

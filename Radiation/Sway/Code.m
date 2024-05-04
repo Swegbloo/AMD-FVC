@@ -1,7 +1,7 @@
 clear all;
 clc;
-a=1;
-d=0.9;
+a=0.5;
+d=0.5;
 n = 10;
 l1=100;
 z = zeros(1,l1);
@@ -24,17 +24,18 @@ for ii = 0:l1-1
     end
 end
 
-  
+for l = 0:l1-1  
 alpha_vector(:,1) = alpha(l,n,m(:,l+1),d,a);
 for ii = 0:n
-z = z + AR_fun(a,d,ii,m(:,l+1),n,alpha_vector)*A_star(a,d,ii,m(ii+1,l+1)); % A and R are combined
+z(1,1+l) = z(1,1+l) + AR_fun(a,d,ii,m(:,l+1),n,alpha_vector)*A_star(a,d,ii,m(ii+1,l+1)); % A and R are combined
 % ARV(i+1,1) = AR_fun(a,d,i,m(i+1,l+1),l);
 % ASV(i+1,1) = A_star(a,d,i,m(i+1,l+1));
 end
 
 z(1,l+1) = z(1,l+1)*(-1/(a*(1-d)));
 
+end
 
-%plot(x,imag(z));
+plot(x,imag(z));
 % plot(x,imag(z));
-%hold on;
+hold on;

@@ -15,6 +15,7 @@ I = eye(n+1);
     %disp(I);
     
      %disp(G);
+     disp(inv(I-E)*G);
     out = inv(I-E)*G; %Given Matrix Equation: A-E*A=G =>A=G*(I-E)^(-1)
     % disp(out)
 end
