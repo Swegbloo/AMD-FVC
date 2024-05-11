@@ -1,7 +1,7 @@
 clear all;  
 clc;
-a=0.2;
-d=0.3;
+a=0.5;
+d=0.3333;
 n = 4;
 l1=100;
 z = zeros(1,l1);
@@ -10,7 +10,7 @@ alpha_vector = zeros(n+1,1);
 if l1>1
 m(1,:) = linspace(0,4,l1)/a; % index 1 implies 1st m_0
 end
-m(1,1) = 0.05;
+m(1,1) = 0.01;
 x = m(1,:)*a; % x to be plotted
 global v;
 fun = @dispe;
@@ -39,20 +39,21 @@ end
 % z(1,l+1) = z(1,l+1)+(1/8)*(a*d-a^3/(6*d)-alpha_vector(1,1));
 % % disp(z(1,l+1));
 % end
-for l = 0:l1-1  
+for l = 0:l1-1  %validate against SDC functions
     alpha_vector(:,1) = alpha(l,n,m(:,l+1),d,a);
     for i = 0:n
-        z(1,l+1) = z(1,l+1) - (alpha_vector(i+1,1)*(-1)^n*phi_star(a,i,d))/(a^3);
+        z(1,l+1) = z(1,l+1) - (alpha_vector(i+1,1)*(-1)^i*phi_star(a,i,d))/(a^3);
     end
     for i = 0:n
-        z(1,l+1) = z(1,l+1) - A_fun(a,d,i,m(:,l+1),n,alpha_vector)*Z_star(m(i+1),i,d)*R_ratio(m(i+1),a,i);
+        z(1,l+1) = z(1,l+1) - (A_fun(a,d,i,m(:,l+1),n,alpha_vector)*Z_star(m(i+1),i,d)*R_ratio(m(i+1),a,i))/(a^2);
     end
     z(1,l+1) = z(1,l+1) + (6*a*d^2-a^3)/(48*d);
 end
 
 CC = zeros(n);
- hold on;
-plot(x,real(z));
+ 
+plot(x,real(z)/a);
+hold on;
 %plot(x,imag(z));
 % rr=zeros(n,n);
 %   for i = 0:n
