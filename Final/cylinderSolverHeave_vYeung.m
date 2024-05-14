@@ -187,7 +187,7 @@ for in2 = 1:NT
 
             A_star = (a/(2.0*dn))*(1.0/alpha_0)*N0^-0.5;
             A_star = -1.0*A_star*sinh(alpha_0*dn);
-            disp(A_star);
+%             disp(A_star);
 
         else
             mk = alpha(ik-1,3);Nk = alpha(ik-1,4);

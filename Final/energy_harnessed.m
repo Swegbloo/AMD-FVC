@@ -1,4 +1,4 @@
-function eh = energy_harnessed(b_3,x_3,b_5,x_5)
+function eh = energy_harnessed(b_3,x_3,b_5,x_5,b_2,x_2)
 B = zeros(6);
 X = zeros(6,1);
 %disp(b_3);
@@ -11,7 +11,9 @@ for i = 1:6
         elseif (i == 5) && (j == 5)
            B(i,j) = b_5;
            X(i,1) = x_5;
-        end
+        elseif (i==2)&&(j==2)
+           B(i,j) = b_2;
+           X(i,1) = x_2;
     end
 end
 if det(B) == 0

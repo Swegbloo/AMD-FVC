@@ -296,20 +296,20 @@ for ii = 1:NT
 
         e(ii,jj) = epsn(ii,1)*sum/dn;
         
-        if (ii==jj)
-
-            AMAT(ii,jj) = 1.0 - e(ii,jj);
-
-        else
-
-            AMAT(ii,jj) = -1.0*e(ii,jj);
-
-        end
+        % if (ii==jj)
+        % 
+        %     AMAT(ii,jj) = 1.0 - e;
+        % 
+        % else
+        % 
+        %     AMAT(ii,jj) = -1.0*e;
+        % 
+        % end
         
     end
     
 end
-%disp(e);
+disp(e);
 %     
 %     
 % 
