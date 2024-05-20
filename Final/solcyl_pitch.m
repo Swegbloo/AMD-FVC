@@ -296,27 +296,27 @@ for ii = 1:NT
 
         e(ii,jj) = epsn(ii,1)*sum/dn;
         
-        % if (ii==jj)
-        % 
-        %     AMAT(ii,jj) = 1.0 - e;
-        % 
-        % else
-        % 
-        %     AMAT(ii,jj) = -1.0*e;
-        % 
-        % end
+        if (ii==jj)
+        
+            AMAT(ii,jj) = 1.0 - e(ii,jj);
+        
+        else
+        
+            AMAT(ii,jj) = -1.0*e(ii,jj);
+        
+        end
         
     end
     
 end
-disp(e);
+
 %     
 %     
 % 
 % 
 % %% end of MH Nokob's formulation %%%
 % 
-RESTART  = 20;
+RESTART  = ENDN;
 TOL = 1.0e-06;
 MAXIT = 20;
 ALPHAN= gmres(AMAT,BVEC,RESTART,TOL,MAXIT);
