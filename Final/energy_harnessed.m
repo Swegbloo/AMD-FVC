@@ -19,7 +19,7 @@ end
 if det(B) == 0
     for i=1:6
         if B(i,i) ~= 0
-            eh = (1/8)*transpose(X)*X/B(i,i);
+            eh = (1/8)*X(i,1)^2/B(i,i);
         end
     end
 else
