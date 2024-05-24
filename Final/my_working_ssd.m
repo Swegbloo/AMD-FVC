@@ -15,6 +15,9 @@ load("CW_greens.mat")
 load("num_heave_am_2x.mat");
 load("num_heave_df_2x.mat");
 load("num_heave_dp_2x.mat");
+load("num_heave_am_4x.mat");
+load("num_heave_dp_4x.mat");
+load("num_heave_df_4x.mat");
 
 AM = num_heave_am(:,2);
 num_freqS = num_heave_am(:,1);
@@ -24,6 +27,10 @@ HAMYeung = Data001;
 AM2 = num_heave_am_2x(:,2);
 DF2 = num_heave_df_2x(:,2);
 DP2 = num_heave_dp_2x(:,2);
+AM4 = num_heave_am_4x(:,2);
+DF4 = num_heave_df_4x(:,2);
+DP4 = num_heave_dp_4x(:,2);
+
 nEqs = 20;
 formulation = 'Garrett';
 
@@ -32,6 +39,7 @@ formulation = 'Garrett';
 for i = 1:50
     DP(i) = DP(i)/num_heave_dp(i,3);
     DP2(i) = DP2(i)/num_heave_dp(i,3);
+    DP4(i) = DP4(i)/num_heave_dp(i,3);
 end
 
 
@@ -49,6 +57,9 @@ l_num_heave = zeros(1,50);
 enrg_h_num_2x = zeros(1,50);
 enrg_d_num_2x = zeros(1,50);
 l_num_heave_2x = zeros(1,50);
+enrg_h_num_4x = zeros(1,50);
+enrg_d_num_4x = zeros(1,50);
+l_num_heave_4x = zeros(1,50);
 freqinv = zeros(1,nFreqs);
 l_a_heave = zeros(1,nFreqs);
 p = 1025;
@@ -181,6 +192,10 @@ for ik = 1:50
     enrg_h_num_2x(1,ik) = energy_harnessed(DP2(ik),DF2(ik),0,0,0,0);
     enrg_d_num_2x(1,ik) = energy_delivered(dpt,num_freqS(ik)/a,A);
     l_num_heave_2x(1,ik) = enrg_h_num_2x(1,ik)/enrg_d_num_2x(1,ik); %capture width numerical 2x
+
+    enrg_h_num_4x(1,ik) = energy_harnessed(DP4(ik),DF4(ik),0,0,0,0);
+    enrg_d_num_4x(1,ik) = energy_delivered(dpt,num_freqS(ik)/a,A);
+    l_num_heave_4x(1,ik) = enrg_h_num_4x(1,ik)/enrg_d_num_4x(1,ik); %capture width numerical 2x
 end
 
 % return
@@ -197,10 +212,11 @@ plot(freqScale, aMass(:,1)/a,'x')
 plot(num_freqS,AM/(1025*pi*a^4),'.');
 plot(HAMYeung(:,1),HAMYeung(:,2));
 plot(num_freqS,AM2/(1025*pi*a^4),'+');
+plot(num_freqS,AM4/(1025*pi*a^4),'-')
 title('Heave Added Mass (a = 0.5 & d = 0.1)');
 ylabel('µ_3_3/a');
 xlabel('m_0.a');
-legend('Yeung 1981','NEMOH 231 Panels','Yeung Screenshot','NEMOH 483 Panels');
+legend('Yeung 1981','NEMOH 231 Panels','Yeung Screenshot','NEMOH 483 Panels','NEMOH 987 Panels');
 hold off;
 
 % refData = csvread('test_solutions\Garrett_torques_dbya_0.75_hbya_0.25.csv');
@@ -218,10 +234,11 @@ hold on;
 plot(freqScale, damping(:,1)/a,'x');
 plot(num_freqS,DP/(1025*pi*a^4),'.');
 plot(num_freqS,DP2/(1025*pi*a^4),'+');
+plot(num_freqS,DP4/(1025*pi*a^4),'-');
 title('Heave Damping (a = 0.5 & d = 0.1)');
 ylabel('λ_3_3/a');
 xlabel('m_0.a');
-legend('Yeung 1981','NEMOH 231 Panels','NEMOH 483 Panels');
+legend('Yeung 1981','NEMOH 231 Panels','NEMOH 483 Panels','NEMOH 987 Panels');
 hold off;
 % figure(2)
 % plot(freqScale, difForces(:,2))
@@ -232,10 +249,11 @@ hold on;
 plot(freqScale, difForces(:,3),'x');
 plot(num_freqS,DF/(pi*a^2*dpt*(1-d)*1025*9.81)),'.';
 plot(num_freqS,DF2/(pi*a^2*dpt*(1-d)*1025*9.81),'+');
+plot(num_freqS,DF4/(pi*a^2*dpt*(1-d)*1025*9.81),'+');
 title('Heave Diffraction Force (a = 0.5 & d = 0.1)');
 ylabel('F_3_3/a');
 xlabel('m_0.a');
-legend('Yeung 1981','NEMOH 231 Panels','NEMOH 483 Panels');
+legend('Yeung 1981','NEMOH 231 Panels','NEMOH 483 Panels','NEMOH 987');
 hold off;
 
 figure(4)
@@ -244,9 +262,11 @@ plot(freqScale,l_a_heave/(2*a),'.');
 plot(CW_greens(:,1),CW_greens(:,2),'+');
 plot(num_freqS,l_num_heave/(2*a),'-');
 plot(num_freqS,l_num_heave_2x/(2*a),'-');
+plot(num_freqS,l_num_heave_4x/(2*a),'x');
+
 title('Heave Capture Width (a = 0.5 & d = 0.1)');
 ylabel('CW/(2.a)');
 xlabel('m_0.a');
-legend('Yeung 1981','Greens Theorem','NEMOH 231 Panels','NEMOH 483 Panels');
+legend('Yeung 1981','Greens Theorem','NEMOH 231 Panels','NEMOH 483 Panels','NEMOH 987 Panels');
 hold off;
 
