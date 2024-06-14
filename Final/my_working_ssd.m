@@ -6,7 +6,7 @@ g = 9.81;
 % a = 0.2;
 dpt = 1;
 a=0.5;
-d = 0.1;
+d = 0.3333;
 load("num_heave_am.mat");
 load("num_heave_dp.mat");
 load("num_heave_df.mat");
@@ -18,6 +18,40 @@ load("num_heave_dp_2x.mat");
 load("num_heave_am_4x.mat");
 load("num_heave_dp_4x.mat");
 load("num_heave_df_4x.mat");
+load("num_heave_df_4x_S2x.mat");
+load("num_heave_df_4x_R2x.mat");
+load("num_heave_am_8x.mat");
+load("num_heave_dp_8x.mat");
+load("num_heave_df_8x.mat");
+load("num_heave_am_16x.mat");
+load("num_heave_dp_16x.mat");
+load("num_heave_df_16x.mat");
+%load("num_surge_am.mat");
+load("num_surge_am_1x.mat");
+load("num_surge_am_2x.mat");
+load("num_surge_am_4x.mat");
+load("num_surge_am_8x.mat");
+load("num_surge_dp.mat");
+load("num_surge_dp_2x.mat");
+load("num_surge_dp_4x.mat");
+load("num_surge_dp_8x.mat");
+load("num_surge_df.mat");
+load("num_surge_df_2x.mat");
+load("num_surge_df_4x.mat");
+load("num_surge_df_8x.mat");
+load("num_pitch_am.mat");
+load("num_pitch_am_2x.mat");
+load("num_pitch_am_4x.mat");
+load("num_pitch_am_8x.mat");
+load("num_pitch_dp.mat");
+load("num_pitch_dp_2x.mat");
+load("num_pitch_dp_4x.mat");
+load("num_pitch_dp_8x.mat");
+load("num_pitch_df.mat");
+load("num_pitch_df_2x.mat");
+load("num_pitch_df_4x.mat");
+load("num_pitch_df_8x.mat");
+
 
 AM = num_heave_am(:,2);
 num_freqS = num_heave_am(:,1);
@@ -30,6 +64,39 @@ DP2 = num_heave_dp_2x(:,2);
 AM4 = num_heave_am_4x(:,2);
 DF4 = num_heave_df_4x(:,2);
 DP4 = num_heave_dp_4x(:,2);
+DF4S2 = num_heave_df_4x_S2x(:,2);
+DF4R2 = num_heave_df_4x_R2x(:,2);
+AM8 = num_heave_am_8x(:,2);
+DP8 = num_heave_dp_8x(:,2);
+DF8 = num_heave_df_8x(:,2);
+AM16 = num_heave_am_16x(:,2);
+DP16 = num_heave_dp_16x(:,2);
+DF16 = num_heave_df_16x(:,2);
+%AM_S = num_surge_am(:,2);
+AM_S = num_surge_am_1x(:,2);
+AM_S_2 = num_surge_am_2x(:,2);
+AM_S_4 = num_surge_am_4x(:,2);
+AM_S_8 = num_surge_am_8x(:,2);
+DP_S = num_surge_dp(:,2);
+DP_S_2 = num_surge_dp_2x(:,2);
+DP_S_4 = num_surge_dp_4x(:,2);
+DP_S_8 = num_surge_dp_8x(:,2);
+DF_S = num_surge_df(:,2);
+DF_S_2 = num_surge_df_2x(:,2);
+DF_S_4 = num_surge_df_4x(:,2);
+DF_S_8 = num_surge_df_8x(:,2);
+AM_P = num_pitch_am(:,2);
+AM_P_2 = num_pitch_am_2x(:,2);
+AM_P_4 = num_pitch_am_4x(:,2);
+AM_P_8 = num_pitch_am_8x(:,2);
+DP_P = num_pitch_dp(:,2);
+DP_P_2 = num_pitch_dp_2x(:,2);
+DP_P_4 = num_pitch_dp_4x(:,2);
+DP_P_8 = num_pitch_dp_8x(:,2);
+DF_P = num_pitch_df(:,2);
+DF_P_2 = num_pitch_df_2x(:,2);
+DF_P_4 = num_pitch_df_4x(:,2);
+DF_P_8 = num_pitch_df_8x(:,2);
 
 nEqs = 20;
 formulation = 'Garrett';
@@ -40,6 +107,18 @@ for i = 1:50
     DP(i) = DP(i)/num_heave_dp(i,3);
     DP2(i) = DP2(i)/num_heave_dp(i,3);
     DP4(i) = DP4(i)/num_heave_dp(i,3);
+    DP8(i) = DP8(i)/num_heave_dp(i,3);
+    DP16(i) = DP16(i)/num_heave_dp(i,3);
+
+    DP_S(i) = DP_S(i)/num_heave_dp(i,3);
+    DP_S_2(i) = DP_S_2(i)/num_heave_dp(i,3);
+    DP_S_4(i) = DP_S_4(i)/num_heave_dp(i,3);
+    DP_S_8(i) = DP_S_8(i)/num_heave_dp(i,3);
+
+    DP_P(i) = DP_P(i)/num_heave_dp(i,3);
+    DP_P_2(i) = DP_P_2(i)/num_heave_dp(i,3);
+    DP_P_4(i) = DP_P_4(i)/num_heave_dp(i,3);
+    DP_P_8(i) = DP_P_8(i)/num_heave_dp(i,3);
 end
 
 
@@ -58,6 +137,9 @@ enrg_h_num_2x = zeros(1,50);
 enrg_d_num_2x = zeros(1,50);
 l_num_heave_2x = zeros(1,50);
 enrg_h_num_4x = zeros(1,50);
+enrg_h_num_8x = zeros(1,50);
+enrg_d_num_8x = zeros(1,50);
+l_num_heave_8x = zeros(1,50);
 enrg_d_num_4x = zeros(1,50);
 l_num_heave_4x = zeros(1,50);
 freqinv = zeros(1,nFreqs);
@@ -195,7 +277,11 @@ for ik = 1:50
 
     enrg_h_num_4x(1,ik) = energy_harnessed(DP4(ik),DF4(ik),0,0,0,0);
     enrg_d_num_4x(1,ik) = energy_delivered(dpt,num_freqS(ik)/a,A);
-    l_num_heave_4x(1,ik) = enrg_h_num_4x(1,ik)/enrg_d_num_4x(1,ik); %capture width numerical 2x
+    l_num_heave_4x(1,ik) = enrg_h_num_4x(1,ik)/enrg_d_num_4x(1,ik); %capture width numerical 4x
+
+    enrg_h_num_8x(1,ik) = energy_harnessed(DP8(ik),DF8(ik),0,0,0,0);
+    enrg_d_num_8x(1,ik) = energy_delivered(dpt,num_freqS(ik)/a,A);
+    l_num_heave_8x(1,ik) = enrg_h_num_8x(1,ik)/enrg_d_num_8x(1,ik); %capture width numerical 8x
 end
 
 % return
@@ -208,15 +294,35 @@ end
 
 figure(1)
 hold on;
-plot(freqScale, aMass(:,1)/a,'x')
-plot(num_freqS,AM/(1025*pi*a^4),'.');
-plot(HAMYeung(:,1),HAMYeung(:,2));
-plot(num_freqS,AM2/(1025*pi*a^4),'+');
-plot(num_freqS,AM4/(1025*pi*a^4),'-')
-title('Heave Added Mass (a = 0.5 & d = 0.1)');
-ylabel('µ_3_3/a');
-xlabel('m_0.a');
-legend('Yeung 1981','NEMOH 231 Panels','Yeung Screenshot','NEMOH 483 Panels','NEMOH 987 Panels');
+% plot(freqScale, aMass(:,1)/a,'x')
+% plot(num_freqS,AM/(1025*pi*a^4),'.');
+% plot(HAMYeung(:,1),HAMYeung(:,2));
+% plot(num_freqS,AM2/(1025*pi*a^4),'+');
+% plot(num_freqS,AM4/(1025*pi*a^4),'-');
+% plot(num_freqS,AM8/(1025*pi*a^4),'X');
+% plot(num_freqS,AM16/(1025*pi*a^4),'-');
+% title('Heave Added Mass (a = 0.5 & d = 0.1)');
+% ylabel('µ_3_3/a');
+% xlabel('m_0.a');
+% legend('Yeung 1981','NEMOH 231 Panels','Yeung Screenshot','NEMOH 483 Panels','NEMOH 987 Panels','NEMOH 1995 Panels','NEMOH 4032 Panels');
+
+% plot(freqScale, aMass(:,2),'x');
+% plot(num_freqS,AM_S/(1025*pi*a^2*(1-d)),'.');
+% plot(num_freqS,AM_S_2/(1025*pi*a^2*(1-d)),'x');
+% plot(num_freqS,AM_S_4/(1025*pi*a^2*(1-d)),'+');
+% plot(num_freqS,AM_S_8/(1025*pi*a^2*(1-d)),'-');
+% title('Surge Added Mass (a = 0.5 & d = 0.1)');
+% legend('Yeung 1981','NEMOH 231 Panels','NEMOH 483 Panels','NEMOH 987 Panels','NEMOH 1995 Panels');
+
+plot(freqScale, aMass(:,3)/a,'x');
+plot(num_freqS,AM_P/(1025*pi*a^4*dpt^2),'.');
+plot(num_freqS,AM_P_2/(1025*pi*a^4*dpt^2),'x');
+plot(num_freqS,AM_P_4/(1025*pi*a^4*dpt^2),'+');
+plot(num_freqS,AM_P_8/(1025*pi*a^4*dpt^2),'-');
+title('Pitch Added Mass (a = 0.5 & d = 0.1)');
+legend('Yeung 1981','NEMOH 231 Panels','NEMOH 483 Panels','NEMOH 987 Panels','NEMOH 1995 Panels');
+
+
 hold off;
 
 % refData = csvread('test_solutions\Garrett_torques_dbya_0.75_hbya_0.25.csv');
@@ -231,14 +337,39 @@ hold off;
 
 figure(2)
 hold on;
-plot(freqScale, damping(:,1)/a,'x');
-plot(num_freqS,DP/(1025*pi*a^4),'.');
-plot(num_freqS,DP2/(1025*pi*a^4),'+');
-plot(num_freqS,DP4/(1025*pi*a^4),'-');
-title('Heave Damping (a = 0.5 & d = 0.1)');
+% plot(freqScale, damping(:,1)/a,'x');
+% plot(num_freqS,DP/(1025*pi*a^4),'.');
+% plot(num_freqS,DP2/(1025*pi*a^4),'+');
+% plot(num_freqS,DP4/(1025*pi*a^4),'-');
+% plot(num_freqS,DP8/(1025*pi*a^4),'X');
+% plot(num_freqS,DP16/(1025*pi*a^4),'-');
+% title('Heave Damping (a = 0.5 & d = 0.1)');
+% ylabel('λ_3_3/a');
+% xlabel('m_0.a');
+% legend('Yeung 1981','NEMOH 231 Panels','NEMOH 483 Panels','NEMOH 987 Panels','NEMOH 1995 Panels','NEMOH 4032 Panels');
+
+% plot(freqScale, damping(:,2),'x');
+% plot(num_freqS,DP_S/(1025*pi*a^2*(1-d)),'.');
+% plot(num_freqS,DP_S_2/(1025*pi*a^2*(1-d)),'+');
+% plot(num_freqS,DP_S_4/(1025*pi*a^2*(1-d)),'-');
+% plot(num_freqS,DP_S_8/(1025*pi*a^2*(1-d)),'X');
+% plot(num_freqS,DP16/(1025*pi*a^4),'-');
+% title('Surge Damping (a = 0.5 & d = 0.1)');
+% ylabel('λ_3_3/a');
+% xlabel('m_0.a');
+% legend('Yeung 1981','NEMOH 231 Panels','NEMOH 483 Panels','NEMOH 987 Panels','NEMOH 1995 Panels');
+
+plot(freqScale, damping(:,3)/a,'x');
+plot(num_freqS,DP_P/(1025*pi*a^4*dpt^2),'.');
+plot(num_freqS,DP_P_2/(1025*pi*a^4*dpt^2),'+');
+plot(num_freqS,DP_P_4/(1025*pi*a^4*dpt^2),'-');
+plot(num_freqS,DP_P_8/(1025*pi*a^4*dpt^2),'X');
+% plot(num_freqS,DP16/(1025*pi*a^4),'-');
+title('Pitch Damping (a = 0.5 & d = 0.1)');
 ylabel('λ_3_3/a');
 xlabel('m_0.a');
-legend('Yeung 1981','NEMOH 231 Panels','NEMOH 483 Panels','NEMOH 987 Panels');
+legend('Yeung 1981','NEMOH 231 Panels','NEMOH 483 Panels','NEMOH 987 Panels','NEMOH 1995 Panels');
+
 hold off;
 % figure(2)
 % plot(freqScale, difForces(:,2))
@@ -246,14 +377,63 @@ hold off;
 
 figure(3)
 hold on;
-plot(freqScale, difForces(:,3),'x');
-plot(num_freqS,DF/(pi*a^2*dpt*(1-d)*1025*9.81)),'.';
-plot(num_freqS,DF2/(pi*a^2*dpt*(1-d)*1025*9.81),'+');
-plot(num_freqS,DF4/(pi*a^2*dpt*(1-d)*1025*9.81),'+');
-title('Heave Diffraction Force (a = 0.5 & d = 0.1)');
+% plot(freqScale, difForces(:,3),'-');
+% plot(num_freqS,DF/(pi*a^2*dpt*(1-d)*1025*9.81)),'.';
+% plot(num_freqS,DF2/(pi*a^2*dpt*(1-d)*1025*9.81),'+');
+% plot(num_freqS,DF4/(pi*a^2*dpt*(1-d)*1025*9.81),'.');
+% plot(num_freqS,DF4S2/(pi*a^2*dpt*(1-d)*1025*9.81),'x');
+% plot(num_freqS,DF4R2/(pi*a^2*dpt*(1-d)*1025*9.81),'+');
+% plot(num_freqS,DF8/(pi*a^2*dpt*(1-d)*1025*9.81),'-');
+% plot(num_freqS,DF16,'-');
+
+% title('Heave Diffraction Force (a = 0.5 & d = 0.1)');
+% ylabel('F_3_3/a');
+% xlabel('m_0.a');
+% legend('Yeung 1981','NEMOH 987','NEMOH 987 + 2xS Panels','NEMOH 987 + 2xR Panels','NEMOH 4023 Panels');
+
+% plot(freqScale, difForces(:,6),'-');
+% plot(num_freqS,DF_S/(pi*a^2*dpt*(1-d)*1025*9.81)),'.';
+% plot(num_freqS,DF_S_2/(pi*a^2*dpt*(1-d)*1025*9.81),'+');
+% plot(num_freqS,DF_S_4/(pi*a^2*dpt*(1-d)*1025*9.81),'.');
+% plot(num_freqS,DF_S_8/(pi*a^2*dpt*(1-d)*1025*9.81),'.');
+%plot(num_freqS,DF4S2/(pi*a^2*dpt*(1-d)*1025*9.81),'x');
+%plot(num_freqS,DF4R2/(pi*a^2*dpt*(1-d)*1025*9.81),'+');
+%plot(num_freqS,DF8/(pi*a^2*dpt*(1-d)*1025*9.81),'-');
+%plot(num_freqS,DF16,'-');
+
+% title('Surge Diffraction Force (a = 0.5 & d = 0.1)');
+% ylabel('F_3_3/a');
+% xlabel('m_0.a');
+% legend('Yeung 1981','NEMOH 231 Panels','NEMOH 483 Panels','NEMOH 987 Panels','NEMOH 1995 Panels');
+
+% plot(freqScale, difForces(:,6),'-');
+% plot(num_freqS,DF_S/(pi*a^2*dpt*(1-d)*1025*9.81)),'.';
+% plot(num_freqS,DF_S_2/(pi*a^2*dpt*(1-d)*1025*9.81),'+');
+% plot(num_freqS,DF_S_4/(pi*a^2*dpt*(1-d)*1025*9.81),'.');
+% plot(num_freqS,DF_S_8/(pi*a^2*dpt*(1-d)*1025*9.81),'.');
+%plot(num_freqS,DF4S2/(pi*a^2*dpt*(1-d)*1025*9.81),'x');
+%plot(num_freqS,DF4R2/(pi*a^2*dpt*(1-d)*1025*9.81),'+');
+%plot(num_freqS,DF16,'-');
+
+% title('Surge Diffraction Force (a = 0.5 & d = 0.1)');
+% ylabel('F_3_3/a');
+% xlabel('m_0.a');
+% legend('Yeung 1981','NEMOH 231 Panels','NEMOH 483 Panels','NEMOH 987 Panels','NEMOH 1995 Panels');
+
+plot(freqScale, difForces(:,9),'-');
+plot(num_freqS,DF_P/(pi*a^3*dpt*(1-d)*1025*9.81)),'.';
+plot(num_freqS,DF_P_2/(pi*a^3*dpt*(1-d)*1025*9.81),'+');
+plot(num_freqS,DF_P_4/(pi*a^3*dpt*(1-d)*1025*9.81),'.');
+plot(num_freqS,DF_P_8/(pi*a^3*dpt*(1-d)*1025*9.81),'.');
+%plot(num_freqS,DF4S2/(pi*a^2*dpt*(1-d)*1025*9.81),'x');
+%plot(num_freqS,DF4R2/(pi*a^2*dpt*(1-d)*1025*9.81),'+');
+%plot(num_freqS,DF8/(pi*a^2*dpt*(1-d)*1025*9.81),'-');
+%plot(num_freqS,DF16,'-');
+
+title('Pitch Diffraction Force (a = 0.5 & d = 0.1)');
 ylabel('F_3_3/a');
 xlabel('m_0.a');
-legend('Yeung 1981','NEMOH 231 Panels','NEMOH 483 Panels','NEMOH 987');
+legend('Yeung 1981','NEMOH 231 Panels','NEMOH 483 Panels','NEMOH 987 Panels','NEMOH 1995 Panels');
 hold off;
 
 figure(4)
@@ -263,10 +443,11 @@ plot(CW_greens(:,1),CW_greens(:,2),'+');
 plot(num_freqS,l_num_heave/(2*a),'-');
 plot(num_freqS,l_num_heave_2x/(2*a),'-');
 plot(num_freqS,l_num_heave_4x/(2*a),'x');
+plot(num_freqS,l_num_heave_8x/(2*a),'-');
 
 title('Heave Capture Width (a = 0.5 & d = 0.1)');
 ylabel('CW/(2.a)');
 xlabel('m_0.a');
-legend('Yeung 1981','Greens Theorem','NEMOH 231 Panels','NEMOH 483 Panels','NEMOH 987 Panels');
+legend('Yeung 1981','Greens Theorem','NEMOH 231 Panels','NEMOH 483 Panels','NEMOH 987 Panels','NEMOH 1995 Panels');
 hold off;
 
