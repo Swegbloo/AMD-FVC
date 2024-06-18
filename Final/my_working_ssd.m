@@ -315,9 +315,9 @@ for ik = 1:50
     enrg_d_num_8x(1,ik) = energy_delivered(dpt,num_freqS(ik)/a,A);
     l_num_pitch_8x(1,ik) = enrg_h_num_8x(1,ik)/enrg_d_num_8x(1,ik); %capture width numerical 8x
 
-    % enrg_h_num_8x(1,ik) = energy_harnessed(DP_H_8(ik),DF8(ik),DP_P_8(ik),DF_P_8(ik),DP_S_8(ik),DF_S_8(ik),0);
-    % enrg_d_num_8x(1,ik) = energy_delivered(dpt,num_freqS(ik)/a,A);
-    % l_num_uncoupled_8x(1,ik) = enrg_h_num_8x(1,ik)/enrg_d_num_8x(1,ik); %capture width numerical 8x
+    enrg_h_num_8x(1,ik) = energy_harnessed(DP_H_8(ik),DF8(ik),DP_P_8(ik),DF_P_8(ik),DP_S_8(ik),DF_S_8(ik),0);
+    enrg_d_num_8x(1,ik) = energy_delivered(dpt,num_freqS(ik)/a,A);
+    l_num_uncoupled_8x(1,ik) = enrg_h_num_8x(1,ik)/enrg_d_num_8x(1,ik); %capture width numerical 8x
 
     enrg_h_num_8x(1,ik) = energy_harnessed(DP_H_8(ik),DF8(ik),DP_P_8(ik),DF_P_8(ik),DP_S_8(ik),DF_S_8(ik),DP_C_8(ik));
     enrg_d_num_8x(1,ik) = energy_delivered(dpt,num_freqS(ik)/a,A);
@@ -413,25 +413,25 @@ hold on;
 % xlabel('m_0.a');
 % legend('NEMOH 231 Panels','NEMOH 483 Panels','NEMOH 987 Panels','NEMOH 1995 Panels');
 
-%%plot(freqScale, damping(:,3)/a,'x');
-% plot(num_freqS,DP_P/(1025*pi*a^4*dpt^2),'.');
-% plot(num_freqS,DP_P_2/(1025*pi*a^4*dpt^2),'+');
-% plot(num_freqS,DP_P_4/(1025*pi*a^4*dpt^2),'-');
-% plot(num_freqS,DP_P_8/(1025*pi*a^4*dpt^2),'X');
-% % plot(num_freqS,DP16/(1025*pi*a^4),'-');
-% title('Pitch Damping (a = 0.5 & d = 0.1)');
-% ylabel('λ_3_3/a');
-% xlabel('m_0.a');
-% legend('NEMOH 231 Panels','NEMOH 483 Panels','NEMOH 987 Panels','NEMOH 1995 Panels');
-
-plot(num_freqS,DP_C/(1025*pi*a^2*dpt^2),'.');
-plot(num_freqS,DP_C_2/(1025*pi*a^2*dpt^2),'x');
-plot(num_freqS,DP_C_4/(1025*pi*a^2*dpt^2),'+');
-plot(num_freqS,DP_C_8/(1025*pi*a^2*dpt^2),'-');
-title('Pitch-Surge Coupled Damping (a = 0.5 & d = 0.1)');
-ylabel('λ_5_1');
+%plot(freqScale, damping(:,3)/a,'x');
+plot(num_freqS,DP_P/(1025*pi*a^4*dpt^2),'.');
+plot(num_freqS,DP_P_2/(1025*pi*a^4*dpt^2),'+');
+plot(num_freqS,DP_P_4/(1025*pi*a^4*dpt^2),'-');
+plot(num_freqS,DP_P_8/(1025*pi*a^4*dpt^2),'X');
+% plot(num_freqS,DP16/(1025*pi*a^4),'-');
+title('Pitch Damping (a = 0.5 & d = 0.1)');
+ylabel('λ_3_3/a');
 xlabel('m_0.a');
 legend('NEMOH 231 Panels','NEMOH 483 Panels','NEMOH 987 Panels','NEMOH 1995 Panels');
+
+% plot(num_freqS,DP_C/(1025*pi*a^2*dpt^2),'.');
+% plot(num_freqS,DP_C_2/(1025*pi*a^2*dpt^2),'x');
+% plot(num_freqS,DP_C_4/(1025*pi*a^2*dpt^2),'+');
+% plot(num_freqS,DP_C_8/(1025*pi*a^2*dpt^2),'-');
+% title('Pitch-Surge Coupled Damping (a = 0.5 & d = 0.1)');
+% ylabel('λ_5_1');
+% xlabel('m_0.a');
+% legend('NEMOH 231 Panels','NEMOH 483 Panels','NEMOH 987 Panels','NEMOH 1995 Panels');
 
 hold off;
 % figure(2)
@@ -454,20 +454,20 @@ hold on;
 % xlabel('m_0.a');
 % legend('Yeung 1981','NEMOH 987','NEMOH 987 + 2xS Panels','NEMOH 987 + 2xR Panels','NEMOH 4023 Panels');
 
-% plot(freqScale, difForces(:,6),'-');
-% plot(num_freqS,DF_S/(pi*a^2*dpt*(1-d)*1025*9.81)),'.';
-% plot(num_freqS,DF_S_2/(pi*a^2*dpt*(1-d)*1025*9.81),'+');
-% plot(num_freqS,DF_S_4/(pi*a^2*dpt*(1-d)*1025*9.81),'.');
-% plot(num_freqS,DF_S_8/(pi*a^2*dpt*(1-d)*1025*9.81),'.');
+plot(freqScale, difForces(:,6),'-');
+plot(num_freqS,abs(DF_S)/(pi*a^2*dpt*(1-d)*1025*9.81)),'.';
+plot(num_freqS,abs(DF_S_2)/(pi*a^2*dpt*(1-d)*1025*9.81),'+');
+plot(num_freqS,abs(DF_S_4)/(pi*a^2*dpt*(1-d)*1025*9.81),'.');
+plot(num_freqS,abs(DF_S_8)/(pi*a^2*dpt*(1-d)*1025*9.81),'x');
 %plot(num_freqS,DF4S2/(pi*a^2*dpt*(1-d)*1025*9.81),'x');
 %plot(num_freqS,DF4R2/(pi*a^2*dpt*(1-d)*1025*9.81),'+');
 %plot(num_freqS,DF8/(pi*a^2*dpt*(1-d)*1025*9.81),'-');
 %plot(num_freqS,DF16,'-');
 
-% title('Surge Diffraction Force (a = 0.5 & d = 0.1)');
-% ylabel('F_3_3/a');
-% xlabel('m_0.a');
-% legend('Yeung 1981','NEMOH 231 Panels','NEMOH 483 Panels','NEMOH 987 Panels','NEMOH 1995 Panels');
+title('Surge Diffraction Force (a = 0.5 & d = 0.1)');
+ylabel('F_3_3/B');
+xlabel('m_0.a');
+legend('Yeung 1981','NEMOH 231 Panels','NEMOH 483 Panels','NEMOH 987 Panels','NEMOH 1995 Panels');
 
 % %plot(freqScale, difForces(:,6),'-');
 % plot(num_freqS,DF_S/(pi*a^2*dpt*(1-d)*1025*9.81)),'.';
@@ -501,6 +501,9 @@ hold off;
 
 figure(4)
 hold on;
+
+xlim([0,1.4])
+
 %plot(freqScale,l_a_heave/(2*a),'.');
 %plot(CW_greens(:,1),CW_greens(:,2),'+');
 %plot(num_freqS,l_num_heave/(2*a),'-');
@@ -518,9 +521,9 @@ plot(num_freqS,l_num_surge_8x/(2*a),'-');
 %plot(num_freqS,l_num_pitch_4x/(2*a),'x');
 plot(num_freqS,l_num_pitch_8x/(2*a),'-');
 
-%plot(num_freqS,l_num_uncoupled_8x/(2*a),'x');
+plot(num_freqS,l_num_uncoupled_8x/(2*a),'x');
 
-plot(num_freqS,l_num_coupled_8x/(2*a),'+');
+plot(num_freqS,abs(l_num_coupled_8x)/(2*a),'+');
 
 title('Heave Capture Width (a = 0.5 & d = 0.1)');
 ylabel('CW/(2.a)');
