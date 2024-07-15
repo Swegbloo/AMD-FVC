@@ -28,12 +28,12 @@ if b_51==0
         end
     end
 elseif b_51~=0
-Bi = inv(B);
 
-if b_51~=0
+
+
     disp(B);
     disp(inv(B));
-end
-eh = (1/8)*X'*Bi*X;
+
+eh = (1/8)*X'*(B\X);
 end
 end
